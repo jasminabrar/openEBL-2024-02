@@ -1,7 +1,7 @@
 '''
 --- Simple MZI ---
 
-by Lukas Chrostowski, 2020-2023...
+by Lukas Chrostowski, 2020-2023
 
 Example simple script to
  - create a new layout with a top cell
@@ -28,6 +28,7 @@ from SiEPIC.extend import to_itype
 from SiEPIC.verification import layout_check
 
 import os
+
 
 if Python_Env == 'Script':
     try:
