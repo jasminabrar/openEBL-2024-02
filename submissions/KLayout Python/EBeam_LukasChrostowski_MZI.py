@@ -29,6 +29,10 @@ from SiEPIC.verification import layout_check
 
 import os
 
+x = 5
+y = x + 2
+print(y)
+
 if Python_Env == 'Script':
     try:
         # For external Python mode, when installed using pip install siepic_ebeam_pdk
