@@ -34,7 +34,7 @@ jobs:
 
       - name: get python scripts from submissions / Klayout Python/**.py'
         run: |
-          export FILES=$(git diff --name-status --diff-filter=ACM --relative=submissions/Klayout\ Python/ ${{ github.event.before }} ${{ github.sha }} | grep -E '\.(py)$' | awk '$1 != "D" {print $2}')
+          export FILES=$(git diff --name-status --diff-filter=ACM --relative=submissions/Klayout\ Python/ ${{ github.event.before }} ${{ github.sha }} | grep -E '\.py$' | awk {print $2}')
           echo "FILES=$FILES" >> $GITHUB_ENV
 
           echo "Added / modified Python files: $FILES"
