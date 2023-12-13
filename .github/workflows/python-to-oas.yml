@@ -55,6 +55,8 @@ jobs:
 
             oas_file="${file%.py}.oas"
             OAS_FILES+=("$oas_file")
+            
+            echo "oas file; $oas_file"
 
             echo "Getting gds/oas output for $file"
 
