@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "submissions/Klayout Python/**/*.py"
+      - submissions/Klayout Python/**.py'
     branches:
       - main
   pull_request:
