@@ -29,7 +29,6 @@ from SiEPIC.verification import layout_check
 
 import os
 
-x = 5
 
 if Python_Env == 'Script':
     try:
