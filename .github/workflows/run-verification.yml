@@ -1,10 +1,10 @@
 name: Run Layout Verification
 
 on:
-  workflow_run:
-    workflows: ["Run Python Files"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["Run Python Files"]
+  #   types:
+  #     - completed
   workflow_dispatch:
   push:
     # paths:
