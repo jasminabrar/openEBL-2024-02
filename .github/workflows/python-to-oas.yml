@@ -45,15 +45,16 @@ jobs:
 
           export FILES=$(find "submissions/KLayout Python" -type f -name "*.py")
 
-          ENCODED_FILES = $(echo -n "$FILES" | base64)
-          echo "FILES=$ENCODED_FILES" >> $GITHUB_ENV
-
           echo "Added / modified Python files; $FILES"
 
           IFS=$'\n'
         
+          OAS_FILES=()
           # run all python files to get gds/oas output
           for file in $FILES; do
+
+            oas_file="${file%.py}.oas"
+            OAS_FILES+=("$oas_file")
 
             echo "Getting gds/oas output for $file"
 
@@ -63,23 +64,25 @@ jobs:
 
           done
 
-      - name: get oas file names
-        run: |
-
-          DECODED_FILES=$(echo "$FILES" | base64 --decode)
-
-          export OAS_FILES=()
-
-          IFS=$'\n'
-
-          for file in $DECODED_FILES; do
-            oas_file="${file%.py}.oas"
-            OAS_FILES+=("$oas_file")
-          done
-
           echo "oas files; $OAS_FILES"
 
           echo "OAS_FILES=$OAS_FILES" >> $GITHUB_ENV
+
+      # - name: get oas file names
+      #   run: |
+
+      #     export OAS_FILES=()
+
+      #     IFS=$'\n'
+
+      #     for file in $DECODED_FILES; do
+      #       oas_file="${file%.py}.oas"
+      #       OAS_FILES+=("$oas_file")
+      #     done
+
+      #     echo "oas files; $OAS_FILES"
+
+      #     echo "OAS_FILES=$OAS_FILES" >> $GITHUB_ENV
 
       - name: commit outputted gds/oas files into repository
         run: |
