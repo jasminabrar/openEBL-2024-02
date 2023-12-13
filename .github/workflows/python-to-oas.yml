@@ -45,7 +45,7 @@ jobs:
 
           export FILES=$(find "submissions/KLayout Python" -type f -name "*.py")
 
-          ENCODED_FILES = $(echo "$FILES" | base64)
+          ENCODED_FILES = $(echo -n "$FILES" | base64)
           echo "FILES=$ENCODED_FILES" >> $GITHUB_ENV
 
           echo "Added / modified Python files; $FILES"
