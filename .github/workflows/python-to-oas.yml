@@ -38,7 +38,7 @@ jobs:
       - name: Debug information
         run: |
           ls -R submissions
-          ls -R "submissions/Klayout_Python"
+          ls -R "./submissions/Klayout_Python"
 
       - name: get python scripts
         run: |
