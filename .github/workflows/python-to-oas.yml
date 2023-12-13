@@ -55,7 +55,7 @@ jobs:
 
             echo "Getting gds/oas output for $file"
 
-            python "submissions/Klayout_P$file 
+            python "submissions/Klayout Python/$file" 
 
             echo "Done for $file"
 
