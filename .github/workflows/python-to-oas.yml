@@ -38,12 +38,12 @@ jobs:
       - name: Debug information
         run: |
           ls -R submissions
-          ls -R "./submissions/Klayout_Python"
+          ls -R "submissions/KLayout_Python"
 
       - name: get python scripts
         run: |
 
-          export FILES=$(find submissions/Klayout_Python -type f -name "*.py")
+          export FILES=$(find submissions/KLayout_Python -type f -name "*.py")
           echo "FILES=$FILES" >> $GITHUB_ENV
 
           echo "Added / modified Python files; $FILES"
