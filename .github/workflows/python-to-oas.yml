@@ -69,7 +69,7 @@ jobs:
 
           echo "oas files; $OAS_FILES"
 
-          echo "OAS_FILES=$OAS_FILES" >> $GITHUB_ENV
+          echo "OAS_FILES=${OAS_FILES[@]}" >> $GITHUB_ENV
 
       # - name: get oas file names
       #   run: |
