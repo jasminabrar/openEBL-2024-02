@@ -14,7 +14,7 @@ jobs:
   run-python:
     runs-on: ubuntu-latest
     env:
-      PATH: submissions/Klayout Python
+      PYTHON_SCRIPT_PATH: submissions/Klayout Python
 
     steps:
       - name: checkout repo content
@@ -35,12 +35,12 @@ jobs:
       - name: Debug information
         run: |
           ls -R submissions
-          ls -R "${PATH}"
+          ls -R "${PYTHON_SCRIPT_PATH}"
 
       - name: get python scripts from submissions / Klayout Python/**.py'
         run: |
 
-          export FILES=$(find "${PATH}" -type f -name "*.py")
+          export FILES=$(find "${PYTHON_SCRIPT_PATH}" -type f -name "*.py")
           echo "FILES=$FILES" >> $GITHUB_ENV
 
           echo "Added / modified Python files; $FILES"
