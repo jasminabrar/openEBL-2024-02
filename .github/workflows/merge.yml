@@ -31,6 +31,8 @@ jobs:
 
           python merge/EBeam_merge.py
 
+
+
       # - name: commit outputted files into repository
       #   run: |
       #     git config --local user.email "${{ github.actor }}@users.noreply.github.com"
@@ -50,7 +52,8 @@ jobs:
 
       - name: move merge output files to new folder
         run: |
-          output_files="EBeam.gds EBeam.oas EBeam.txt EBeam.coords"
+          #output_files="EBeam.gds EBeam.oas EBeam.txt EBeam.coords"
+          output_files="EBeam.oas EBeam.txt"
 
           IFS=' '
 
