@@ -18,7 +18,7 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v2
         with:
-          fetch depth: 1
+          fetch depth: 2
 
         # can also specify python version if needed
       - name: setup python
