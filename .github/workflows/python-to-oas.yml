@@ -44,7 +44,9 @@ jobs:
         run: |
 
           export FILES=$(find "submissions/KLayout Python" -type f -name "*.py")
-          echo "FILES=$FILES" >> $GITHUB_ENV
+
+          ENCODED_FILES = $(echo "$FILES" | base64)
+          echo "FILES=$ENCODED_FILES" >> $GITHUB_ENV
 
           echo "Added / modified Python files; $FILES"
 
@@ -60,17 +62,22 @@ jobs:
             echo "Done for $file"
 
           done
-        working-directory: ${{ github.workspace }}
 
       - name: get oas file names
         run: |
+
+          DECODED_FILES=$(echo "$FILES" | base64 --decode)
+
           export OAS_FILES=()
-          for file in $FILES; do
+
+          IFS=$'\n'
+
+          for file in $DECODED_FILES; do
             oas_file="${file%.py}.oas"
             OAS_FILES+=("$oas_file")
           done
 
-          echo "oas files: $OAS_FILES"
+          echo "oas files; $OAS_FILES"
 
           echo "OAS_FILES=$OAS_FILES" >> $GITHUB_ENV
 
