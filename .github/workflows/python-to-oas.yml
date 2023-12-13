@@ -32,10 +32,13 @@ jobs:
 
       - name: get python scripts from submissions / Klayout Python/**.py'
         run: |
-          export FILES=$(git diff --name-status --diff-filter=ACM "${{ github.event.sha }}^1" "${{ github.sha }}" | grep -E '^submissions/Klayout Python/.*\.py$' | awk '{print $2}')
+
+          cd submissions/Klayout \ Python
+
+          export FILES=$(git diff --name-status --diff-filter=ACM ${{ github.event.before }} ${{ github.sha }} | grep -E '\.py$' | awk '{print $2}')
           echo "FILES=$FILES" >> $GITHUB_ENV
 
-          echo "Added / modified Python files: $FILES"
+          echo "Added / modified Python files; $FILES"
 
           IFS=$'\n'
         
@@ -49,6 +52,7 @@ jobs:
             echo "Done for $file"
 
           done
+        working-directory: ${{ github.workspace }}
 
       - name: get oas file names
         run: |
