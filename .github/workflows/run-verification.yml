@@ -1,11 +1,11 @@
 name: Run Layout Verification
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Run Python Files"]
     types:
       - completed
-  workflow_dispatch:
   push:
     paths:
       - 'submissions/**.gds'
@@ -40,7 +40,9 @@ jobs:
       - name: get .gds and .oas files, run example layout verification
         id: run-script
         run: |
-        
+
+          # if the action is being triggered after running python files, get resulting oas files from txt file
+          # github actions is not configured to detect files pushed from another action, thus we cannot use the method below
           if [ -s "python-to-gds_oas.txt" ]; then
              export FILES=$(cat python-to-gds_oas.txt)
              IFS=' '
@@ -52,7 +54,7 @@ jobs:
           fi
 
           # print the names of the files
-          echo "Files for verification: $FILES"
+          echo "Files for verification; $FILES"
 
           files_with_errors=""
         
