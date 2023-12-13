@@ -53,7 +53,8 @@ jobs:
           # run all python files to get gds/oas output
           for file in $FILES; do
 
-            oas_file="${file%.py}.oas"
+            file_name=$(basename "$path")
+            oas_file="${file_name%.py}.oas"
             OAS_FILES+=("$oas_file")
             
             echo "oas file; $oas_file"
