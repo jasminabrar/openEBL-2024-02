@@ -49,13 +49,13 @@ jobs:
 
           IFS=$'\n'
         
-          OAS_FILES=()
+          OAS_FILES=""
           # run all python files to get gds/oas output
           for file in $FILES; do
 
             file_name=$(basename "$file")
             oas_file="${file_name%.py}.oas"
-            OAS_FILES+=("$oas_file")
+            OAS_FILES+="$oas_file "
             
             echo "oas file; $oas_file"
 
@@ -69,7 +69,7 @@ jobs:
 
           echo "oas files; $OAS_FILES"
 
-          echo "OAS_FILES=${OAS_FILES[@]}" >> $GITHUB_ENV
+          echo "OAS_FILES=$OAS_FILES" >> $GITHUB_ENV
 
       # - name: get oas file names
       #   run: |
@@ -94,7 +94,7 @@ jobs:
           
           # git add all produced oas files
           for file in $OAS_FILES; do
-            git add "$file"
+            git add "submissions/$file"
           done
 
           git commit -m "Add oas files produced from .py files"      
