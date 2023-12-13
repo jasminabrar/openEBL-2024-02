@@ -45,7 +45,7 @@ jobs:
       - name: get python scripts
         run: |
 
-          export FILES=$(git diff --name-status --diff-filter=ACM --relative="submissions/KLayout Python" ${{ github.event.before }} ${{ github.sha }} "submissions/KLayout Python" | grep -E '\.(gds|oas)$' | awk '{print $2}')
+          export FILES=$(git diff --name-only --diff-filter=ACM ${{ github.event.before }} ${{ github.sha }} -- "submissions/KLayout Python" | grep -E '\.py$')
           #export FILES=$(find "submissions/KLayout Python" -type f -name "*.py")
 
           echo "Added / modified Python files; $FILES"
