@@ -29,6 +29,9 @@ from SiEPIC.verification import layout_check
 
 import os
 
+x = 5
+y = 5
+print('adding code')
 
 if Python_Env == 'Script':
     try:
