@@ -33,7 +33,7 @@ jobs:
       - name: get python scripts from submissions / Klayout Python/**.py'
         run: |
 
-          cd submissions/Klayout \ Python
+          cd 'submissions/Klayout Python'
 
           export FILES=$(git diff --name-status --diff-filter=ACM ${{ github.event.before }} ${{ github.sha }} | grep -E '\.py$' | awk '{print $2}')
           echo "FILES=$FILES" >> $GITHUB_ENV
