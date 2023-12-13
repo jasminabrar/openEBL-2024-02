@@ -7,9 +7,9 @@ on:
   #     - completed
   workflow_dispatch:
   push:
-    # paths:
-    #   - 'submissions/**.gds'
-    #   - 'submissions/**.oas'
+    paths:
+      - 'submissions/**.gds'
+      - 'submissions/**.oas'
     branches:
       - main
   pull_request:
