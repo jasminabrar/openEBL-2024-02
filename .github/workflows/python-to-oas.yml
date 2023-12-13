@@ -3,8 +3,6 @@ name: Run Python Files
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'Klayout Python/**'
     branches:
       - main
   pull_request:
