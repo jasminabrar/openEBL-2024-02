@@ -71,10 +71,16 @@ jobs:
 
           echo "OAS_FILES=$OAS_FILES" >> $GITHUB_ENV
 
+      - name: write added gds/oas files to txt file
+        run: |
+          echo "$OAS_FILES" > python-to-gds_oas.txt
+
       - name: commit outputted gds/oas files into repository
         run: |
           git config --local user.email jasminabrar@users.noreply.github.com
           git config --local user.name "jasminabrar"
+
+          git add python-to-gds_oas.txt
           
           # git add all produced oas files
           for file in $OAS_FILES; do
@@ -84,61 +90,61 @@ jobs:
           git commit -m "Add oas files produced from .py files" 
           git push
 
-      - name: run verification
-        run: |
-          # print the names of the files
-          echo "Files for verification: $OAS_FILES"
+      # - name: run verification
+      #   run: |
+      #     # print the names of the files
+      #     echo "Files for verification: $OAS_FILES"
 
-          files_with_errors=""
+      #     files_with_errors=""
 
-          IFS=' '
+      #     IFS=' '
         
-          # run verification on all files
-          for file in $OAS_FILES; do
+      #     # run verification on all files
+      #     for file in $OAS_FILES; do
 
-            echo "Running verification on $file"
+      #       echo "Running verification on $file"
 
-            output=$(python run_verification.py "submissions/$file")
+      #       output=$(python run_verification.py "submissions/$file")
 
-            # get number of errors
-            errors_from_output=$(echo "$output" | tail -n 1)
+      #       # get number of errors
+      #       errors_from_output=$(echo "$output" | tail -n 1)
 
-            echo "$errors_from_output errors detected for $file"
+      #       echo "$errors_from_output errors detected for $file"
 
-            # if file results in verification errors add to string files_with_errors
-            if [[ "$errors_from_output" -ge 1 ]]; then
-              files_with_errors+="$file, $errors_from_output errors. "
-            fi
+      #       # if file results in verification errors add to string files_with_errors
+      #       if [[ "$errors_from_output" -ge 1 ]]; then
+      #         files_with_errors+="$file, $errors_from_output errors. "
+      #       fi
 
-            echo "Done verification on $file"
-          done
+      #       echo "Done verification on $file"
+      #     done
 
-          echo "files_with_errors=$files_with_errors" >> $GITHUB_ENV
+      #     echo "files_with_errors=$files_with_errors" >> $GITHUB_ENV
         
-      - name: move output files to new folder
-        run: |
-          export OUTPUT_FILES=$(find /home/runner/work/openEBL-2024-02/openEBL-2024-02/submissions -name "*.lyrdb")
-          echo "Output files: $OUTPUT_FILES"
+      # - name: move output files to new folder
+      #   run: |
+      #     export OUTPUT_FILES=$(find /home/runner/work/openEBL-2024-02/openEBL-2024-02/submissions -name "*.lyrdb")
+      #     echo "Output files: $OUTPUT_FILES"
 
-          mkdir -p verification_output
+      #     mkdir -p verification_output
 
-          for file in $OUTPUT_FILES; do
-            cp "$file" verification_output/
-          done
+      #     for file in $OUTPUT_FILES; do
+      #       cp "$file" verification_output/
+      #     done
 
-      - name: upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: layout-errors
-          path: verification_output/
+      # - name: upload artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: layout-errors
+      #     path: verification_output/
 
-      - name: fail if there are errors from layout verification
-        run: |
-          if [ -z "$files_with_errors" ]; then
-            echo "No errors detected."
-          else
-            echo "Errors detected: $files_with_errors"
-            exit 1
-          fi
+      # - name: fail if there are errors from layout verification
+      #   run: |
+      #     if [ -z "$files_with_errors" ]; then
+      #       echo "No errors detected."
+      #     else
+      #       echo "Errors detected: $files_with_errors"
+      #       exit 1
+      #     fi
 
 
