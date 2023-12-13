@@ -41,7 +41,7 @@ jobs:
         id: run-script
         run: |
         
-          if [ -s "python-to-gds_oas.txt"]; then
+          if [ -s "python-to-gds_oas.txt" ]; then
              export FILES=$(cat python-to-gds_oas.txt)
              IFS=' '
              echo "" > python-to-gds_oas.txt
