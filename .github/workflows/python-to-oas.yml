@@ -55,7 +55,7 @@ jobs:
 
             echo "Getting gds/oas output for $file"
 
-            python "submissions/Klayout Python/$file" 
+            python "$file" 
 
             echo "Done for $file"
 
@@ -70,7 +70,7 @@ jobs:
             OAS_FILES+=("$oas_file")
           done
 
-          echo "oas files: $oas_files"
+          echo "oas files: $OAS_FILES"
 
           echo "OAS_FILES=$OAS_FILES" >> $GITHUB_ENV
 
