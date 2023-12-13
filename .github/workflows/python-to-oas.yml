@@ -1,10 +1,10 @@
-name: Run python files and convert to gds/oas
+name: Run Python Files
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "submissions/'Klayout Python'/**.py"
+      - "submissions/Klayout Python/**"
     branches:
       - main
   pull_request:
