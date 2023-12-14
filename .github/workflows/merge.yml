@@ -2,7 +2,7 @@ name: Run Merge Script
 
 on:
   workflow_dispatch:
-  # run after layout verification
+  # run after layout verification.
   workflow_run:
     workflows: ["Run Layout Verification"]
     types:
