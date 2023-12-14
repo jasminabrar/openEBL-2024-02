@@ -61,7 +61,7 @@ jobs:
           else
             if [ "${{ github.event_name }}" = "pull_request" ]; then
               # get changed / added files from forked repo
-              export FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD | grep -E '\.(gds|oas)$')
+              export FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD | grep -E '\.(gds|oas)$' | sed 's|^submissions/||')
 
             else
               #push, locate the changed / added .gds and .oas files in the submission folder
