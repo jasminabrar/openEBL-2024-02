@@ -60,7 +60,7 @@ jobs:
 
           else
             #locate the changed / added .gds and .oas files in the submission folder
-            export FILES=$(git diff --name-status --diff-filter=ACM --relative=submissions ${{ github.event.before }} ${{ github.sha }} submissions | grep -E '\.(gds|oas)$' | awk '{print $2}')
+            export FILES=$(git diff --name-status --diff-filter=ACM --relative=submissions ${{ github.event.before }}...${{ github.sha }} submissions | grep -E '\.(gds|oas)$' | awk '{print $2}')
 
             echo "files here: $FILES"
             IFS=$'\n'
