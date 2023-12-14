@@ -59,10 +59,15 @@ jobs:
             git push
 
           else
-            #locate the changed / added .gds and .oas files in the submission folder
-            export FILES=$(git diff --name-status --diff-filter=ACM --relative=submissions ${{ github.event.before }}...${{ github.sha }} submissions | grep -E '\.(gds|oas)$' | awk '{print $2}')
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              # get changed / added files from forked repo
+              export FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD | grep -E '\.(gds|oas)$')
 
-            echo "files here: $FILES"
+            else
+              #push, locate the changed / added .gds and .oas files in the submission folder
+              export FILES=$(git diff --name-status --diff-filter=ACM --relative=submissions ${{ github.event.before }} ${{ github.sha }} submissions | grep -E '\.(gds|oas)$' | awk '{print $2}')
+            fi
+           
             IFS=$'\n'
           fi
 
