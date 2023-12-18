@@ -52,7 +52,7 @@ jobs:
           path: merge_output/
 
       - name: echo artifact url
-        run: echo 'Artifact URL is ${{ steps.artifact-upload.artifact-url }}'
+        run: echo 'Artifact ID is ${{ steps.artifact-upload.artifact-id }}'
 
       - name: upload url to readme if we are in SiEPIC/openEBL-2024-02
         run: |
