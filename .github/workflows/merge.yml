@@ -13,13 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: check if triggered by a print
-        run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            echo "Workflow triggered by a pull request. Don't perform merging"
-            exit 0  
-          fi
-
       - name: checkout repo content
         uses: actions/checkout@v2
 
@@ -52,7 +45,25 @@ jobs:
           done
 
       - name: upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
+        id: artifact-upload
         with:
           name: merge-files
           path: merge_output/
+
+      - name: echo artifact url
+        run: echo 'Artifact URL is ${{ steps.artifact-upload.artifact-url }}'
+
+      - name: upload url to readme if we are in SiEPIC/openEBL-2024-02
+        run: |
+          IFS='/' read -ra REPO <<< "$GITHUB_REPOSITORY"
+          OWNER="${REPO[0]}"
+          REPO_NAME="${REPO[1]}"
+          echo "Owner: $OWNER"
+          echo "Repository: $REPO_NAME"
+
+          if [ $OWNER == "SiEPIC" ];then
+            echo 'SiEPIC'
+          fi
+
+            
