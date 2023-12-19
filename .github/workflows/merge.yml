@@ -99,6 +99,6 @@ jobs:
           git add README.md
           git commit -m "update README with new artifact url"
           git push 
-        if: ${{ $OWNER == 'SiEPIC'}}
+        if: ${{ env.OWNER == 'SiEPIC'}}
 
             
