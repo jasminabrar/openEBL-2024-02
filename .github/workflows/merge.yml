@@ -51,11 +51,6 @@ jobs:
           name: merge-files
           path: merge_output/
 
-      - name: echo artifact id and run id
-        run: |
-          echo 'Artifact ID is ${{ steps.artifact-upload.outputs.artifact-id }}'
-          echo 'Run ID is ${{ github.run_id }}'
-
       - name: get artifact url
         run: |
           IFS='/' read -ra REPO <<< "$GITHUB_REPOSITORY"
@@ -68,18 +63,12 @@ jobs:
           ARTIFACT_ID=${{ steps.artifact-upload.outputs.artifact-id }}
 
           ARTIFACT_URL="https://github.com/$OWNER/$REPO_NAME/actions/runs/$RUN_ID/artifacts/$ARTIFACT_ID"
-
           echo "Artifact URL: $ARTIFACT_URL"
 
           echo "ARTIFACT_URL=$ARTIFACT_URL" >> $GITHUB_ENV
           echo "OWNER=$OWNER" >> $GITHUB_ENV
 
-          if [ $OWNER == "SiEPIC" ];then
-            echo 'SiEPIC'
-          
-          fi
-        
-      - name: update url in readme
+      - name: update url in runner README 
         run: |
           start_delim="<!-- start-link -->"
           end_delim="<!-- end-link -->"
@@ -90,7 +79,8 @@ jobs:
           # add new URL
           printf "$start_delim\n$ARTIFACT_URL\n$end_delim\n" >> README.md
 
-      - name: commit and push changes to README.md
+      # merge script always runs on any PR, this ensures link is only updated after a PR is merged into SiEPIC
+      - name: commit and push changes to README if we are in SiEPIC repo
         run: |
           git diff
           git config --local user.email "${{ github.actor }}@users.noreply.github.com"
