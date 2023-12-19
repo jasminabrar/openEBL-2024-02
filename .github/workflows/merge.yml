@@ -56,7 +56,7 @@ jobs:
           echo 'Artifact ID is ${{ steps.artifact-upload.outputs.artifact-id }}'
           echo 'Run ID is ${{ github.run_id }}'
 
-      - name: upload url to readme if we are in SiEPIC/openEBL-2024-02
+      - name: get artifact url
         run: |
           IFS='/' read -ra REPO <<< "$GITHUB_REPOSITORY"
           OWNER="${REPO[0]}"
@@ -71,8 +71,19 @@ jobs:
 
           echo "Artifact URL: $ARTIFACT_URL"
 
+          echo "ARTIFACT_URL=$ARTIFACT_URL" >> $GITHUB_ENV
+
           if [ $OWNER == "SiEPIC" ];then
             echo 'SiEPIC'
+          
           fi
+        
+      - name: update url in readme
+        uses: theboi/github-update-readme@v1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          footer: "Footer [artifact url]($ARTIFACT_URL)"
+
 
             
