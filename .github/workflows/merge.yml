@@ -79,11 +79,24 @@ jobs:
           fi
         
       - name: update url in readme
-        uses: theboi/github-update-readme@v1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          footer: "Footer [artifact url]($ARTIFACT_URL)"
+        run: |
+          start_delim="<!-- start-link -->"
+          end_delim="<!-- end-link -->"
 
+          # remove current URL
+          sed -i "/$start_delim/,/$end_delim/d" README.md
+
+          # add new URL
+          printf "$start_delim\n$ARTIFACT_URL\n$end_delim\n" >> README.md
+
+      - name: commit and push changes to README.md
+        run: |
+          git diff
+          git config --local user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --local user.name "${{ github.actor }}"
+
+          git add README.md
+          git commit -m "update README with new artifact url"
+          git push 
 
             
