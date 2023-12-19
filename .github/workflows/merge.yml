@@ -72,6 +72,7 @@ jobs:
           echo "Artifact URL: $ARTIFACT_URL"
 
           echo "ARTIFACT_URL=$ARTIFACT_URL" >> $GITHUB_ENV
+          echo "OWNER=$OWNER" >> $GITHUB_ENV
 
           if [ $OWNER == "SiEPIC" ];then
             echo 'SiEPIC'
@@ -98,5 +99,6 @@ jobs:
           git add README.md
           git commit -m "update README with new artifact url"
           git push 
+        if: ${{ $OWNER == 'SiEPIC'}}
 
             
