@@ -37,6 +37,10 @@ jobs:
 
           echo "Added / modified Python files; $FILES"
 
+          # delete .oas and .gds files in the runner's submissions folder
+          # this is needed in the case where someone already has file_name.gds and is now trying to generate file_name.oas (or vice versa)
+          rm "submissions"/*
+
           IFS=$'\n'
         
           OUTPUT_FILES=""
