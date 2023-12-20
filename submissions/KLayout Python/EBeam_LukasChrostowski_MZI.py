@@ -8,7 +8,7 @@ Example simple script to
  - create an MZI
  - export to OASIS for submission to fabrication
 
-using SiEPIC-Tools function including connect_pins_with_waveguide and connect_cell.
+using SiEPIC-Tools function including connect_pins_with_waveguide and connect_cell
 
 usage:
  - run this script in Python
@@ -158,4 +158,4 @@ print('Number of errors: %s' % num_errors)
 # Save
 path = os.path.dirname(os.path.realpath(__file__))
 filename = os.path.splitext(os.path.basename(__file__))[0]
-file_out = export_layout(cell, path, filename, relative_path = '..', format='oas', screenshot=True)
+file_out = export_layout(cell, path, filename, relative_path = '..', format='gds', screenshot=True)
