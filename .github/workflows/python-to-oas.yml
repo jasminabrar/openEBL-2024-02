@@ -28,7 +28,7 @@ jobs:
           pip install klayout SiEPIC siepic_ebeam_pdk
           python -m pip install --upgrade SiEPIC
 
-      - name: get python scripts
+      - name: run python scripts and get output gds / oas file
         run: |
 
           # get added/modified py files
@@ -44,7 +44,7 @@ jobs:
           IFS=$'\n'
         
           OUTPUT_FILES=""
-          # run all python files to get oas output
+          
           for file in $FILES; do
 
             echo "Getting oas/gds output for $file"
@@ -52,6 +52,7 @@ jobs:
             # run file and generate a gds / oas output
             python "$file" 
 
+            # get output and save to OUTPUT_FILES
             gds_files=$(find submissions -type f -name "*.gds" -exec basename {} .gds \;)
             oas_files=$(find submissions -type f -name "*.gds" -exec basename {} .oas \;)
 
