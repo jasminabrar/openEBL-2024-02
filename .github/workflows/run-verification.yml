@@ -59,14 +59,14 @@ jobs:
             FILES=$(basename -a $file_paths) 
             #export FILES=$(cat python-to-gds_oas.txt)
             #IFS=' '
-            echo "" > python-to-gds_oas.txt
+            # echo "" > python-to-gds_oas.txt
              
             # push empty text file to repo
-            git config --local user.email "${{ github.actor }}@users.noreply.github.com"
-            git config --local user.name "${{ github.actor }}"
-            git add python-to-gds_oas.txt
-            git commit -m "Emptying text file" 
-            git push
+            # git config --local user.email "${{ github.actor }}@users.noreply.github.com"
+            # git config --local user.name "${{ github.actor }}"
+            # git add python-to-gds_oas.txt
+            # git commit -m "Emptying text file" 
+            # git push
 
           else
             
@@ -90,7 +90,7 @@ jobs:
           files_with_errors=""
         
           IFS=$'\n'
-          
+
           # run verification on all files
           for file in $FILES; do
 
