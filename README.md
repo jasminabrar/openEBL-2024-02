@@ -36,5 +36,5 @@ The submission involves several steps. First, you need to create your design(s) 
 ## Merge Script Files
 
 <!-- start-link -->
-https://github.com/jasminabrar/openEBL-2024-02/actions/runs/7268154517/artifacts/1125227292
+https://github.com/jasminabrar/openEBL-2024-02/actions/runs/7302731312/artifacts/1131665774
 <!-- end-link -->
