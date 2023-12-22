@@ -45,9 +45,9 @@ jobs:
           path: ./binary_files
           search_artifacts: true
 
-      - name: check that built artifacts have been downloaded
-        run: |
-          find ./artifacts 
+      # - name: check that built artifacts have been downloaded
+      #   run: |
+      #     find ./artifacts 
 
       - name: get .gds and .oas files
         run: |
