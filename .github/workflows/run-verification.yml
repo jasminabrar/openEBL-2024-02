@@ -55,7 +55,7 @@ jobs:
           # if the action is being triggered after running python files, get resulting oas files from txt file
           # github actions is not configured to detect files pushed from another action, thus we cannot use the 'else' method below
           if [ "${{ github.event_name }}" == "workflow_run" ]; then
-            file_paths=$(find ./artifacts)
+            file_paths=$(find ./binary_files)
             FILES=$(basename -a $file_paths) 
             #export FILES=$(cat python-to-gds_oas.txt)
             #IFS=' '
