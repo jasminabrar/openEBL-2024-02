@@ -128,10 +128,10 @@ jobs:
           done
         if: ${{ env.PYTHON_TRIGGERED == 'True'}}
 
-      - name: if triggered by python action upload generated .oas and .gds as an artifact
+      - name: if triggered by python action upload .oas and .gds from new folder as an artifact
         uses: actions/upload-artifact@v4
         with:
-          name: python-to-oasgds
+          name: python-to-oas-gds
           path: python_to_oas_gds/
         if: ${{ env.PYTHON_TRIGGERED == 'True'}}
 
