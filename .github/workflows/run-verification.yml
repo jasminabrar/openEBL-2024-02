@@ -124,7 +124,7 @@ jobs:
           mkdir -p python_to_oas_gds
 
           for file in $FILES; do
-            cp "$file" python_to_oas_gds/
+            cp "submissions/$file" python_to_oas_gds/
           done
         if: ${{ env.PYTHON_TRIGGERED == 'True'}}
 
