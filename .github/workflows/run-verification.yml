@@ -125,14 +125,14 @@ jobs:
           for file in $FILES; do
             cp "$file" python_to_oas_gds/
           done
-        if: ${{ env.PYTHON_TRIGGERED == "True"}}
+        if: ${{ env.PYTHON_TRIGGERED == 'True'}}
 
       - name: if triggered by python action upload generated .oas and .gds as an artifact
         uses: actions/upload-artifact@v4
         with:
           name: python-to-oasgds
           path: python_to_oas_gds/
-        if: ${{ env.PYTHON_TRIGGERED == "True"}}
+        if: ${{ env.PYTHON_TRIGGERED == 'True'}}
 
       - name: fail if there are errors from layout verification
         run: |
