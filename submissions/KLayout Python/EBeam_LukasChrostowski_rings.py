@@ -132,10 +132,10 @@ def dbl_bus_ring_res():
         connect_pins_with_waveguide(instGCs[2], 'opt1', inst_dc1, 'pin1', waveguide_type=waveguide_type)
         
         # GC0 to top-right of ring
-        #connect_pins_with_waveguide(instGCs[0], 'opt1', inst_dc2, 'pin1', waveguide_type=waveguide_type)
+        connect_pins_with_waveguide(instGCs[0], 'opt1', inst_dc2, 'pin1', waveguide_type=waveguide_type)
         
         # GC3 to bottom-right of ring
-        #connect_pins_with_waveguide(instGCs[3], 'opt1', inst_dc2, 'pin3', waveguide_type=waveguide_type)
+        connect_pins_with_waveguide(instGCs[3], 'opt1', inst_dc2, 'pin3', waveguide_type=waveguide_type)
 
     # Introduce an error, to demonstrate the Functional Verification
     # inst_dc2.transform(Trans(1000,-1000))
