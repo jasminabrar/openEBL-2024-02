@@ -57,8 +57,9 @@ jobs:
           # github actions is not configured to detect files pushed from another action, thus we cannot use the 'else' method below
           if [ "${{ github.event_name }}" == "workflow_run" ]; then
             # this code is not extracting the file names properly, need to debug this!!
-            file_paths=$(find ./binary_files)
-            FILES=$(basename -a $file_paths | tr '\n' ' ') 
+            FILES=$(ls ./binary_files)
+            #file_paths=$(find ./binary_files)
+            #FILES=$(basename -a $file_paths | tr '\n' ' ') 
             echo "Files; $FILES"
             #export FILES=$(cat python-to-gds_oas.txt)
             #IFS=' '
@@ -95,7 +96,7 @@ jobs:
           IFS=$'\n'
 
           # run verification on all files
-          for file in $FILES; do
+          for file in "$FILES"; do
 
             echo "Running verification on $file"
 
