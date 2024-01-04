@@ -17,7 +17,6 @@ from SiEPIC.scripts import zoom_out, export_layout
 import os
 import numpy
 
-x = 2
 
 if Python_Env == 'Script':
     try:
