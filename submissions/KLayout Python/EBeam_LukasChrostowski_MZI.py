@@ -146,10 +146,10 @@ connect_pins_with_waveguide(instGC1, 'opt1', instY1, 'opt1', waveguide_type=wave
 connect_pins_with_waveguide(instGC2, 'opt1', instY2, 'opt1', waveguide_type=waveguide_type)
 connect_pins_with_waveguide(instY1, 'opt2', instY2, 'opt3', waveguide_type=waveguide_type)
 connect_pins_with_waveguide(instY2, 'opt2', instSpiral, 'optA', waveguide_type=waveguide_type)
-#connect_pins_with_waveguide(instY1, 'opt3', instSpiral, 'optB', waveguide_type=waveguide_type,turtle_B=[5,-90])
+connect_pins_with_waveguide(instY1, 'opt3', instSpiral, 'optB', waveguide_type=waveguide_type,turtle_B=[5,-90])
 
 # Zoom out
-#zoom_out(cell)
+zoom_out(cell)
 
 # Verify
 num_errors = layout_check(cell=cell, verbose=False, GUI=True)
