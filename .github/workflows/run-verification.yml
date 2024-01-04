@@ -41,7 +41,7 @@ jobs:
       - name: download latest python-to-oas-gds artifact from triggering workflow
         uses: dawidd6/action-download-artifact@v2
         with:
-          run_id: ${{ github.event.workflow_run_id }}
+          run_id: ${{ github.event.workflow_run.id }}
           name: python-to-oas-gds
           path: ./binary_files
           search_artifacts: true
